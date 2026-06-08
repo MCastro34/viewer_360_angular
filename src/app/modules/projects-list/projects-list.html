@@ -1,0 +1,18 @@
+@if (projects.hasValue()) {
+  @if (projects.value().length > 0) {
+    <ul>
+      @for (project of projects.value(); track $index) {
+        <li>
+          <h2>{{ project.title }}</h2>
+          <p>{{ project.description }}</p>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>No projects found.</p>
+  }
+} @else if (projects.error()) {
+  <p>Error occurred while loading projects.</p>
+} @else if (projects.isLoading()) {
+  <p>Loading...</p>
+}
