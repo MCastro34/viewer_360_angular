@@ -1,3 +1,5 @@
 export const environment = {
-  projectsUrl: '',
+  projectsUrl: 'data/projects.json',
+  defaultLang: 'pt',
+  langs: ['en', 'pt'],
 };
