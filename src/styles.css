@@ -1,3 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 @import 'tailwindcss';
+
+@theme {
+  --color-main: #e94723;
+  --color-neutral-80: #0b0b0b;
+  --color-neutral-70: #181818;
+  --color-neutral-60: #3e3e3e;
+  --color-neutral-50: #575757;
+  --color-neutral-40: #989797;
+  --color-neutral-30: #cfcfcf;
+  --color-neutral-20: #f0f0f0;
+  --color-neutral-10: #fafafa;
+  --font-display: 'Nunito Sans', sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-8xl font-light leading-30 tracking-tighter;
+  }
+
+  h2 {
+    @apply text-6xl font-semibold leading-18 tracking-tight;
+  }
+
+  h3 {
+    @apply text-5xl font-regular leading-14 tracking-normal;
+  }
+
+  h4 {
+    @apply text-4xl font-regular leading-12 tracking-wider;
+  }
+
+  h5 {
+    @apply text-2xl font-regular leading-10 tracking-normal;
+  }
+
+  h6 {
+    @apply text-xl font-semibold leading-8 tracking-wide;
+  }
+}
