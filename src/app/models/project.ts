@@ -6,7 +6,7 @@ interface Project {
   url: string;
   background: Media;
   partners: Media[];
-  configSrc: string;
+  configRef: string;
 }
 
 interface ProjectTimeFrame {
@@ -18,7 +18,7 @@ interface ProjectConfigs {
   logo: Media;
   background: Media;
   template: ProjectTemplate;
-  sceneSrc: string;
+  sceneRef: string;
   entry: string;
   guided: ProjectGuided;
   analytics: ProjectAnalytics;
@@ -37,6 +37,6 @@ interface ProjectAnalytics {
 interface ProjectSettings {}
 
 enum ProjectTemplate {
-  Default = 'default',
-  Extended = 'extended',
+  DEFAULT = 'default',
+  EXTENDED = 'extended',
 }

@@ -5,7 +5,7 @@ import { inject } from '@angular/core';
 export const languageGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
-  const availableLangs = environment.langs;
+  const availableLangs: string[] = environment.langs;
   const lang = route.paramMap.get('lang');
 
   if (lang && availableLangs.includes(lang)) {

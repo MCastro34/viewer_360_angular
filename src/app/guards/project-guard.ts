@@ -1,9 +1,8 @@
-import { ResolveFn, Router, UrlTree } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 import { Projects } from '../services/projects';
 
-export const projectResolver: ResolveFn<Project> = async (route, state) => {
+export const projectConfigsGuard: CanActivateFn = async (route, state) => {
   const _router = inject(Router);
   const _projectsService = inject(Projects);
   // Find the project in the route parameters
@@ -15,8 +14,13 @@ export const projectResolver: ResolveFn<Project> = async (route, state) => {
   const project = await _projectsService.find(projectID);
   if (!project) {
     const lang = route.paramMap.get('lang');
-    _router.navigate(['/', lang]);
-    throw new Error(`Project with ID ${projectID} not found`);
+    return _router.createUrlTree(['/', lang]);
   }
-  return project;
+  // Check if configRef exists
+  const configOK = await _projectsService.configExists(project.configRef);
+  if (!configOK) {
+    const lang = route.paramMap.get('lang');
+    return _router.createUrlTree(['/', lang]);
+  }
+  return true;
 };

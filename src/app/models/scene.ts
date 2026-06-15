@@ -7,7 +7,7 @@ interface Scene {
 }
 
 interface SceneData {
-  src: string;
+  url: string;
 }
 
 interface Data360 extends SceneData {

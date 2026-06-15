@@ -1,1 +1,14 @@
-<p>landing-page works!</p>
+@if (configs.hasValue()) {
+  @switch (configs.value().template) {
+    @case ('extended') {
+      <app-extended></app-extended>
+    }
+    @default {
+      <app-default [configs]="configs.value()" [project]="project()"></app-default>
+    }
+  }
+} @else if (configs.error()) {
+  <p>Error occurred while loading project.</p>
+} @else if (configs.isLoading()) {
+  <p>Loading...</p>
+}

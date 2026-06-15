@@ -1,6 +1,7 @@
 import { httpResource } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Projects } from '../../services/projects';
 
 @Component({
   selector: 'app-projects-list',
@@ -9,7 +10,9 @@ import { environment } from '../../../environments/environment';
   styleUrl: './projects-list.css',
 })
 export class ProjectsList {
-  projects = httpResource<Project[]>(() => environment.projectsUrl);
+  _projectsService = inject(Projects);
+
+  projects = this._projectsService.projectsResource;
 
   constructor() {}
 }

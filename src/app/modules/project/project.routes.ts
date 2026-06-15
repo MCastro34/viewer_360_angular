@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { projectConfigsGuard } from '../../guards/project-guard';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,6 @@ export const routes: Routes = [
         loadComponent: () => import('./landing-page/landing-page').then((m) => m.LandingPage),
       },
     ],
+    canActivate: [projectConfigsGuard],
   },
 ];

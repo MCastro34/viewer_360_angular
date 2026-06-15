@@ -1,1 +1,44 @@
-<p>default works!</p>
+<section
+  class="w-full h-svh grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 auto-rows-[auto_auto_auto_auto_1fr] px-4 gap-x-4 py-6 overflow-auto"
+>
+  <div
+    class="-z-50 inset-0 w-full h-full flex items-center justify-center fixed after:content-[''] after:absolute after:inset-0 after:w-full after:h-full after:bg-neutral-70/80"
+  >
+    @if (configs().background.type === 'image') {
+      <img class="w-full h-full object-cover" [src]="configs().background.src" alt="" />
+    }
+  </div>
+  <div class="col-span-4 md:col-span-8 lg:col-span-12 flex items-start justify-between">
+    @if (configs().logo.type === 'image') {
+      <img class="h-14 w-auto" [src]="configs().logo.src" alt="Logo" />
+    }
+  </div>
+  <h3 class="col-span-4 col-start-1 mt-16 text-white">
+    {{ project().title }}
+  </h3>
+  <p class="body1 col-span-4 col-start-1 mt-4 text-neutral-20">
+    {{ project().description }}
+  </p>
+  <div class="col-span-4 col-start-1 flex flex-col items-center justify-center">
+    <a
+      class="w-full rounded-full bg-main py-3 flex items-center justify-center gap-2 mt-8 self-end"
+      [routerLink]="['./viewer', configs().entry]"
+    >
+      <span class="button text-white">{{ startVisitLabel }}</span>
+    </a>
+    @if (configs().guided.enabled) {
+      <a
+        class="w-full rounded-full bg-white py-3 flex items-center justify-center gap-2 mt-4"
+        [routerLink]="['./viewer', configs().entry]"
+      >
+        <span class="button text-main">{{ guidedVisitLabel }}</span>
+      </a>
+      <p class="w-full body2 text-neutral-20 mt-4">{{ watchHereLabel }}</p>
+    }
+  </div>
+  <div class="col-span-4 md:col-span-8 lg:col-span-12 flex items-end justify-between mt-8">
+    <a href="https://3decide.com" target="_blank">
+      <img class="h-12 w-auto" src="svg/poweredby_av.svg" alt="Powered by AliveVision" />
+    </a>
+  </div>
+</section>

@@ -1,9 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-default',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './default.html',
   styleUrl: './default.css',
 })
-export class Default {}
+export class Default {
+  project = input<Project>({} as Project);
+  configs = input<ProjectConfigs>({} as ProjectConfigs);
+
+  startVisitLabel = 'Visita Interactiva';
+  guidedVisitLabel = 'Visita Guiada';
+  watchHereLabel = 'Em caso de dificuldades técnicas, veja aqui o vídeo';
+
+  constructor() {}
+}
