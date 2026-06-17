@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { languageGuard } from './guards/language-guard';
 import { projectResolver } from './resolvers/project-resolver';
+import { inject } from '@angular/core';
+import { Webtitle } from './services/webtitle';
 
 export const routes: Routes = [
   // admin routes
@@ -29,6 +31,10 @@ export const routes: Routes = [
       },
     ],
     canActivate: [languageGuard],
+    title: () => {
+      const title = inject(Webtitle);
+      return title.toString('Projects');
+    },
   },
   // redirect to the browser language or default language
   {

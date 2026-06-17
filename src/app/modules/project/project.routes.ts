@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { projectConfigsGuard } from '../../guards/project-guard';
+import { inject } from '@angular/core';
+import { Webtitle } from '../../services/webtitle';
 
 export const routes: Routes = [
   {
@@ -17,5 +19,9 @@ export const routes: Routes = [
       },
     ],
     canActivate: [projectConfigsGuard],
+    title: (route) => {
+      const title = inject(Webtitle);
+      return title.toString(route.data.project.title);
+    },
   },
 ];
