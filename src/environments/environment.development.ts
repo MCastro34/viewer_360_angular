@@ -1,5 +1,5 @@
 export const environment = {
-  webtitle: '',
+  webtitle: 'MC',
   projectsUrl: 'data/projects.json',
   defaultLang: 'pt',
   langs: ['en', 'pt'],
