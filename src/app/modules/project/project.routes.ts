@@ -7,10 +7,11 @@ export const routes: Routes = [
   {
     path: '',
     children: [
-      // route for the project viewer with specified scene
+      // route for the project viewer
       {
-        path: 'viewer/:scene',
-        loadComponent: () => import('./viewer/viewer').then((m) => m.Viewer),
+        path: 'viewer',
+        // loadComponent: () => import('./viewer/viewer').then((m) => m.Viewer),
+        loadChildren: () => import('./viewer/viewer.routes').then((m) => m.routes),
       },
       // route for the project landing page
       {

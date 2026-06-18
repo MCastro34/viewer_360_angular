@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { computed, effect, Service } from '@angular/core';
+import { effect, Service } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Service()
