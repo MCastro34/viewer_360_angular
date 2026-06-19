@@ -15,12 +15,13 @@ export class Viewer {
   private childData = toSignal(this.route.firstChild?.data || this.route.data);
   project = computed(() => this.data()?.project as Project);
   configs = httpResource<ProjectConfigs>(() => this.project().configRef);
-  scene = computed(() => this.childData()?.sceneRef as string);
+  private sceneURL = computed(() => this.childData()?.sceneRef as string);
+  scene = httpResource<Scene>(() => this.sceneURL());
 
   constructor() {
     console.log('VIEWER CONSTRUCTOR');
     effect(() => {
-      console.log(this.scene());
+      console.log(this.scene.value());
     });
   }
 }
