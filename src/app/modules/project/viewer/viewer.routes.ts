@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { sceneGuard } from '../../../guards/scene-guard';
+import { sceneResolver } from '../../../resolvers/scene-resolver';
 
 export const routes: Routes = [
   {
@@ -9,7 +10,9 @@ export const routes: Routes = [
       {
         path: ':scene',
         loadComponent: () => import('./hotspots/hotspots').then((m) => m.Hotspots),
-        canActivate: [sceneGuard],
+        resolve: {
+          sceneRef: sceneResolver,
+        },
       },
     ],
     canActivate: [],

@@ -183,6 +183,47 @@ config.json
                   media
 ```
 
+### 6. Local Asset Hosting
+
+When project configurations and scene definitions are served from the application's `public/` directory, they should be placed within a nested directory structure rather than directly at the root of `public/`.
+
+This helps prevent URL collisions with Angular application routes when running the application locally or in environments that use SPA route fallbacks.
+
+Recommended:
+
+```text
+public/
+└── data/
+    └── project-1/
+        ├── config.json
+        └── scenes/
+            ├── scene-001.json
+            └── scene-002.json
+```
+
+Avoid:
+
+```text
+public/
+├── config.json
+├── scene-001.json
+└── scene-002.json
+```
+
+or
+
+```text
+public/
+└── data/
+    ├── config.json
+    ├── scene-001.json
+    └── scene-002.json
+```
+
+As a general rule, project configuration files and scene files should be located at least two directory levels below the `public/` root (for example, `public/<group>/<project>/...`).
+
+This requirement applies only to assets served locally from the Angular application's `public/` directory. Assets hosted on external servers or CDNs are not affected.
+
 ## Running the Application
 
 Start the development server using either of the following commands:

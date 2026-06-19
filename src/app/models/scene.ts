@@ -6,6 +6,12 @@ interface Scene {
   data: SceneData;
 }
 
+enum SceneTypes {
+  PANORAMA = 'panorama',
+  VIDEO = 'video',
+  IMAGE = 'image',
+}
+
 interface SceneData {
   url: string;
 }

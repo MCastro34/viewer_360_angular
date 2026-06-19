@@ -20,6 +20,9 @@ export class Projects {
     const res = await fetch(configRef, {
       method: 'HEAD',
       cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+      },
     });
     return res.ok;
   }
