@@ -17,6 +17,7 @@ interface SceneData {
 }
 
 interface Data360 extends SceneData {
+  preview?: string;
   levels: DataLevel[];
   facesize: number;
   initialViewParameters: View360;
