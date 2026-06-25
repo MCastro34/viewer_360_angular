@@ -9,7 +9,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Marzipano } from '../../../services/viewer/marzipano';
 import gsap from 'gsap';
 import { Video } from '../../../services/viewer/video';
@@ -27,6 +27,7 @@ export class Viewer implements OnDestroy {
   private _marzipano = inject(Marzipano);
   private _video = inject(Video);
 
+  private router = inject(Router);
   private route = inject(ActivatedRoute);
   private data = toSignal(this.route.data);
   private childData = toSignal(this.route.firstChild?.data || this.route.data);
@@ -49,8 +50,11 @@ export class Viewer implements OnDestroy {
             if (pano) {
               this._marzipano.init(pano);
               this._marzipano.loadScene(scene.data as Data360);
-              this._marzipano.changeScene();
+              this.changeScene();
               this.toggleViewers(true, false);
+              pano.onpointerup = () => {
+                this.updateQueryParams(this._marzipano.sceneView());
+              };
             }
             break;
           case 'video':
@@ -71,6 +75,45 @@ export class Viewer implements OnDestroy {
     this._video.destroy();
   }
 
+  private updateQueryParams(sceneView?: View360) {
+    if (!sceneView) {
+      this.router.navigate([], {
+        queryParams: {},
+        queryParamsHandling: 'merge',
+      });
+    } else {
+      const hash = this.encode(sceneView);
+      this.router.navigate([], {
+        queryParams: {
+          '@': hash,
+        },
+        queryParamsHandling: 'merge',
+      });
+    }
+  }
+
+  private encode(view: View360): string {
+    return btoa(JSON.stringify(view));
+  }
+
+  private decode(hash: string): View360 {
+    return JSON.parse(atob(hash));
+  }
+
+  private changeScene(): void {
+    const hash = this.route.snapshot.queryParamMap.get('@');
+    if (hash) {
+      const view = this.decode(hash);
+      if (isNaN(view.yaw) || isNaN(view.pitch) || isNaN(view.fov!)) {
+        this._marzipano.changeScene();
+      } else {
+        this._marzipano.changeScene(view);
+      }
+    } else {
+      this._marzipano.changeScene();
+    }
+  }
+
   toggleViewers(panoB: boolean, videoB: boolean) {
     const pano = this.pano()?.nativeElement;
     const video = this.video()?.nativeElement;
@@ -82,6 +125,7 @@ export class Viewer implements OnDestroy {
           onComplete: () => {
             if (!panoB) {
               this._marzipano.destroy();
+              pano.onpointerup = null;
             }
           },
         })

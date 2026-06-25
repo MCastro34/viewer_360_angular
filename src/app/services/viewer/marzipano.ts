@@ -1,4 +1,5 @@
 import { effect, inject, NgZone, Service } from '@angular/core';
+import { Router } from '@angular/router';
 import * as _Marzipano from 'marzipano';
 
 @Service()
@@ -47,10 +48,13 @@ export class Marzipano {
     });
   }
 
-  changeScene() {
+  changeScene(view?: View360) {
     this._zone.runOutsideAngular(() => {
       if (!this.nextScene) {
         throw new Error('Next scene was not loaded.');
+      }
+      if (view) {
+        this.nextScene.view().setParameters(view);
       }
       this.viewer.switchScene(this.nextScene, { transitionDuration: 1000 }, () => {
         this.currentScene?.destroy();
@@ -58,6 +62,18 @@ export class Marzipano {
         this.nextScene = undefined;
       });
     });
+  }
+
+  sceneView(): View360 {
+    if (!this.currentScene) {
+      throw new Error('There is no loaded scene.');
+    }
+    const view = this.currentScene.view();
+    return {
+      yaw: view.yaw(),
+      pitch: view.pitch(),
+      fov: view.fov(),
+    };
   }
 
   destroy() {
