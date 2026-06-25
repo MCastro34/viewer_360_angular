@@ -15,9 +15,9 @@ export class Video {
     }
   }
 
-  load(src: string, callback?: CallableFunction) {
+  load(src: string) {
     if (!this.video) {
-      throw new Error('Video not initialized');
+      return;
     }
     this.video.src = src;
     this.video.pause();
@@ -26,21 +26,21 @@ export class Video {
 
   mute(toggle: boolean) {
     if (!this.video) {
-      throw new Error('Video not initialized');
+      return;
     }
     this.video.muted = toggle;
   }
 
   play() {
     if (!this.video) {
-      throw new Error('Video not initialized');
+      return;
     }
     this.video.play();
   }
 
   pause() {
     if (!this.video) {
-      throw new Error('Video not initialized');
+      return;
     }
     this.video.pause();
   }
@@ -53,7 +53,7 @@ export class Video {
 
   destroy() {
     if (!this.video) {
-      throw new Error('Video not initialized');
+      return;
     }
     this.video.pause();
     this.video.removeAttribute('src');

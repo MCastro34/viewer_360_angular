@@ -12,6 +12,7 @@ export class Marzipano {
 
   init(container: HTMLDivElement) {
     this._zone.runOutsideAngular(() => {
+      console.log(this.viewer);
       if (!this.viewer) {
         this.viewer = new _Marzipano.Viewer(container);
       }
@@ -61,6 +62,7 @@ export class Marzipano {
 
   destroy() {
     this._zone.runOutsideAngular(() => {
+      console.log('marz destroy called');
       if (this.viewer) {
         const container = this.viewer.domElement();
         this.viewer.destroy();

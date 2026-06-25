@@ -9,7 +9,7 @@
     }
   </div>
   <div class="col-span-4 sm:col-span-8 md:col-span-12 md:mb-16 flex items-start justify-between">
-    @if (configs().logo.type === 'image') {
+    @if (configs().logo.src) {
       <img class="h-14 w-auto md:h-20" [src]="configs().logo.src" alt="Logo" />
     }
   </div>

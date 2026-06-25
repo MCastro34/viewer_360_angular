@@ -4,5 +4,25 @@
     class="absolute inset-0 w-full h-full flex items-center justify-center bg-black"
     #video
   ></div>
+  @if (scene.hasValue() && configs.hasValue()) {
+    @if (configs.value().logo.mini) {
+      <app-header
+        [logo]="configs.value().logo.mini || configs.value().logo.src"
+        [title]="scene.value().name"
+        class="fixed md:hidden top-0 inset-x-0 z-10"
+      ></app-header>
+      <app-header
+        [logo]="configs.value().logo.src"
+        [title]="scene.value().name"
+        class="fixed hidden md:block top-0 inset-x-0 z-10"
+      ></app-header>
+    } @else {
+      <app-header
+        [logo]="configs.value().logo.src"
+        [title]="scene.value().name"
+        class="fixed top-0 inset-x-0 z-10"
+      ></app-header>
+    }
+  }
 </section>
 <router-outlet></router-outlet>

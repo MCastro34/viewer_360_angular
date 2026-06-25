@@ -13,12 +13,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Marzipano } from '../../../services/viewer/marzipano';
 import gsap from 'gsap';
 import { Video } from '../../../services/viewer/video';
+import { Header } from './header/header';
 
 const CROSSFADE_DURATION = 0.5;
 
 @Component({
   selector: 'app-viewer',
-  imports: [RouterModule],
+  imports: [RouterModule, Header],
   templateUrl: './viewer.html',
   styleUrl: './viewer.css',
 })

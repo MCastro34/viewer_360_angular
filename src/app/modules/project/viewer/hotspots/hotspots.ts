@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hotspots',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './hotspots.html',
   styleUrl: './hotspots.css',
 })

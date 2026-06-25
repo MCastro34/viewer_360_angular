@@ -15,7 +15,7 @@ interface ProjectTimeFrame {
 }
 
 interface ProjectConfigs {
-  logo: Media;
+  logo: LogoSettings;
   background: Media;
   template: ProjectTemplate;
   sceneRef: string;
@@ -23,6 +23,11 @@ interface ProjectConfigs {
   guided: ProjectGuided;
   analytics: ProjectAnalytics;
   settings: ProjectSettings;
+}
+
+interface LogoSettings {
+  src: string;
+  mini?: string;
 }
 
 interface ProjectGuided {
