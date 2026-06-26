@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { Default } from './templates/default/default';
 import { Extended } from './templates/extended/extended';
+import { Project, ProjectConfigs, ProjectTemplate } from '../../../models/project';
 
 @Component({
   selector: 'app-landing-page',
@@ -16,6 +17,7 @@ export class LandingPage {
   private data = toSignal(this.route.data);
   project = computed(() => this.data()?.project as Project);
   configs = httpResource<ProjectConfigs>(() => this.project().configRef);
+  templates = ProjectTemplate;
 
   constructor() {}
 }

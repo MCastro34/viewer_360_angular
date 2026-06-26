@@ -14,6 +14,9 @@ import { Marzipano } from '../../../services/viewer/marzipano';
 import gsap from 'gsap';
 import { Video } from '../../../services/viewer/video';
 import { Header } from './header/header';
+import { Project, ProjectConfigs } from '../../../models/project';
+import { View360 } from '../../../models/media';
+import { Scene, SceneTypes, Data360 } from '../../../models/scene';
 
 const CROSSFADE_DURATION = 0.5;
 
@@ -45,7 +48,7 @@ export class Viewer implements OnDestroy {
       if (this.scene.hasValue()) {
         const scene = this.scene.value();
         switch (scene.type) {
-          case 'panorama':
+          case SceneTypes.PANORAMA:
             const pano = this.pano()?.nativeElement;
             if (pano) {
               this._marzipano.init(pano);
@@ -57,7 +60,7 @@ export class Viewer implements OnDestroy {
               };
             }
             break;
-          case 'video':
+          case SceneTypes.VIDEO:
             const video = this.video()?.nativeElement;
             if (video) {
               this._video.init(video);

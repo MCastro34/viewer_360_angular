@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Project, ProjectConfigs } from '../../../../../models/project';
 
 @Component({
   selector: 'app-default',

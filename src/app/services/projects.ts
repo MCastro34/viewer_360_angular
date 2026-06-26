@@ -1,6 +1,7 @@
 import { httpResource } from '@angular/common/http';
 import { effect, Service } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Project } from '../models/project';
 
 @Service()
 export class Projects {

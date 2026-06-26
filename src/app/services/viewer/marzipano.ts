@@ -1,6 +1,7 @@
-import { effect, inject, NgZone, Service } from '@angular/core';
-import { Router } from '@angular/router';
+import { inject, NgZone, Service } from '@angular/core';
 import * as _Marzipano from 'marzipano';
+import { View360 } from '../../models/media';
+import { Data360 } from '../../models/scene';
 
 @Service()
 export class Marzipano {

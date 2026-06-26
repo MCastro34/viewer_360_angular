@@ -1,4 +1,6 @@
-interface Project {
+import { Media } from './media';
+
+export interface Project {
   id: string;
   title: string;
   description: string;
@@ -9,12 +11,12 @@ interface Project {
   configRef: string;
 }
 
-interface ProjectTimeFrame {
+export interface ProjectTimeFrame {
   start: string;
   end?: string;
 }
 
-interface ProjectConfigs {
+export interface ProjectConfigs {
   logo: LogoSettings;
   background: Media;
   template: ProjectTemplate;
@@ -25,23 +27,23 @@ interface ProjectConfigs {
   settings: ProjectSettings;
 }
 
-interface LogoSettings {
+export interface LogoSettings {
   src: string;
   mini?: string;
 }
 
-interface ProjectGuided {
+export interface ProjectGuided {
   enabled: boolean;
 }
 
-interface ProjectAnalytics {
+export interface ProjectAnalytics {
   enabled: boolean;
   id: string;
 }
 
-interface ProjectSettings {}
+export interface ProjectSettings {}
 
-enum ProjectTemplate {
+export enum ProjectTemplate {
   DEFAULT = 'default',
   EXTENDED = 'extended',
 }

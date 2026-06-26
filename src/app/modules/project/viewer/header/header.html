@@ -1,10 +1,10 @@
 <div
-  class="w-full grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 px-4 py-6 bg-linear-to-b from-neutral-65/60 to-neutral-65/0"
+  class="w-full grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 px-4 md:px-6 py-6 bg-linear-to-b from-neutral-65/60 to-neutral-65/0"
 >
   <a class="col-start-1" [routerLink]="['../']">
     <img class="h-6 md:h-10 w-auto object-contain" [src]="logo()" />
   </a>
-  <span class="col-span-2 sm:col-span-6 md:hidden subtitle1 text-white text-center">{{
-    title()
-  }}</span>
+  <span class="col-span-2 sm:col-span-6 md:hidden subtitle1 text-white text-center">
+    {{ title() }}
+  </span>
 </div>

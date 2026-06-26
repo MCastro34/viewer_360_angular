@@ -1,9 +1,9 @@
-interface Media {
+export interface Media {
   type: string;
   src: string;
 }
 
-interface View360 {
+export interface View360 {
   yaw: number;
   pitch: number;
   fov?: number;

@@ -1,4 +1,6 @@
-interface Scene {
+import { View360 } from './media';
+
+export interface Scene {
   id: string;
   name: string;
   description: string;
@@ -6,24 +8,24 @@ interface Scene {
   data: SceneData;
 }
 
-enum SceneTypes {
+export enum SceneTypes {
   PANORAMA = 'panorama',
   VIDEO = 'video',
   IMAGE = 'image',
 }
 
-interface SceneData {
+export interface SceneData {
   url: string;
 }
 
-interface Data360 extends SceneData {
+export interface Data360 extends SceneData {
   preview?: string;
   levels: DataLevel[];
   facesize: number;
   initialViewParameters: View360;
 }
 
-interface DataLevel {
+export interface DataLevel {
   tileSize: number;
   size: number;
   fallbackOnly?: boolean;
