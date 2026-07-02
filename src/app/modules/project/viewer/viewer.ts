@@ -17,12 +17,13 @@ import { Header } from './header/header';
 import { Project, ProjectConfigs } from '../../../models/project';
 import { View360 } from '../../../models/media';
 import { Scene, SceneTypes, Data360 } from '../../../models/scene';
+import { Footer } from './footer/footer';
 
 const CROSSFADE_DURATION = 0.5;
 
 @Component({
   selector: 'app-viewer',
-  imports: [RouterModule, Header],
+  imports: [RouterModule, Header, Footer],
   templateUrl: './viewer.html',
   styleUrl: './viewer.css',
 })
@@ -42,6 +43,9 @@ export class Viewer implements OnDestroy {
   pano = viewChild<ElementRef<HTMLDivElement>>('pano');
   video = viewChild<ElementRef<HTMLDivElement>>('video');
 
+  private panoFadeIn?: gsap.core.Tween;
+  private videoFadeIn?: gsap.core.Tween;
+
   constructor() {
     this.toggleViewers(false, false);
     effect(() => {
@@ -49,6 +53,7 @@ export class Viewer implements OnDestroy {
         const scene = this.scene.value();
         switch (scene.type) {
           case SceneTypes.PANORAMA:
+            if (this.panoFadeIn) this.panoFadeIn.kill();
             const pano = this.pano()?.nativeElement;
             if (pano) {
               this._marzipano.init(pano);
@@ -61,6 +66,7 @@ export class Viewer implements OnDestroy {
             }
             break;
           case SceneTypes.VIDEO:
+            if (this.videoFadeIn) this.videoFadeIn.kill();
             const video = this.video()?.nativeElement;
             if (video) {
               this._video.init(video);
@@ -117,11 +123,11 @@ export class Viewer implements OnDestroy {
     }
   }
 
-  toggleViewers(panoB: boolean, videoB: boolean) {
+  private toggleViewers(panoB: boolean, videoB: boolean) {
     const pano = this.pano()?.nativeElement;
     const video = this.video()?.nativeElement;
     if (pano) {
-      gsap
+      this.panoFadeIn = gsap
         .to(pano, {
           opacity: panoB ? 1 : 0,
           pointerEvents: panoB ? 'auto' : 'none',
@@ -130,12 +136,14 @@ export class Viewer implements OnDestroy {
               this._marzipano.destroy();
               pano.onpointerup = null;
             }
+            this.panoFadeIn?.kill();
+            this.panoFadeIn = undefined;
           },
         })
         .duration(CROSSFADE_DURATION);
     }
     if (video) {
-      gsap
+      this.videoFadeIn = gsap
         .to(video, {
           opacity: videoB ? 1 : 0,
           pointerEvents: videoB ? 'auto' : 'none',
@@ -145,6 +153,8 @@ export class Viewer implements OnDestroy {
             } else {
               this._video.play();
             }
+            this.videoFadeIn?.kill();
+            this.videoFadeIn = undefined;
           },
         })
         .duration(CROSSFADE_DURATION);

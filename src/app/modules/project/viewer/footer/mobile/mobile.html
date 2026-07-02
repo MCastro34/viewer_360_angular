@@ -1,0 +1,54 @@
+<div class="w-full grid grid-cols-4 sm:grid-cols-8 gap-x-4 gap-y-6">
+  <button
+    class="mt-auto col-span-3 sm:col-span-7 h-fit max-h-12 overflow-hidden pointer-events-auto"
+  >
+    <p class="subtitle2 font-normal text-left text-neutral-20 whitespace-pre-line">
+      Entre o 1º e 2º piso, o The Editory Riverside tem quartos Station, não fumadores, com vista
+      para a Gare. Cada quarto é dotado de uma imagem própria com seleção de fotografias e adereços
+      que remetem para a história da estação. Relaxe em quartos entre os 19 e os 25m2, camas Queen
+      size e todas as comodidades de acolhimento, de tecnologia e de serviço.
+    </p>
+  </button>
+  <div
+    class="mt-auto ml-auto w-12 flex flex-col items-center justify-end gap-y-8 pointer-events-auto"
+  >
+    <button>
+      <i class="av-volume-up text-neutral-10 text-2xl"></i>
+    </button>
+    <button>
+      <i class="av-whatsapp text-neutral-10 text-2xl"></i>
+    </button>
+    <button>
+      <i class="av-share text-neutral-10 text-2xl"></i>
+    </button>
+  </div>
+  <button
+    class="w-12 h-12 rounded-full bg-neutral-60/40 flex items-center justify-center pointer-events-auto"
+  >
+    <i class="av-view-grid text-neutral-30 text-2xl"></i>
+  </button>
+  <div class="col-span-2 sm:col-span-6 flex items-center justify-center gap-x-2 h-12">
+    <a
+      class="w-8 h-8 rounded-full bg-neutral-60/40 flex items-center justify-center pointer-events-auto"
+      [routerLink]="['./', prevScene()]"
+      queryParamsHandling="preserve"
+    >
+      <i class="av-arrow-back text-neutral-30 text-2xl"></i>
+    </a>
+    <span class="body2 text-white text-center"
+      >{{ currentSceneIndex() + 1 }}/{{ scenes().length }}</span
+    >
+    <a
+      class="w-8 h-8 rounded-full bg-neutral-60/40 flex items-center justify-center pointer-events-auto"
+      [routerLink]="['./', nextScene()]"
+      queryParamsHandling="preserve"
+    >
+      <i class="av-arrow-forward text-neutral-30 text-2xl"></i>
+    </a>
+  </div>
+  <button
+    class="w-12 h-12 rounded-full flex items-center justify-center ml-auto pointer-events-auto"
+  >
+    <i class="av-play-circle text-white text-5xl"></i>
+  </button>
+</div>

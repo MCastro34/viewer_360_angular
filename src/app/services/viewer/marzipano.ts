@@ -54,13 +54,15 @@ export class Marzipano {
       if (!this.nextScene) {
         throw new Error('Next scene was not loaded.');
       }
+      console.log();
       if (view) {
         this.nextScene.view().setParameters(view);
       }
-      this.viewer.switchScene(this.nextScene, { transitionDuration: 1000 }, () => {
-        this.currentScene?.destroy();
-        this.currentScene = this.nextScene;
-        this.nextScene = undefined;
+      const sceneToDestroy = this.currentScene;
+      this.currentScene = this.nextScene;
+      this.nextScene = undefined;
+      this.viewer.switchScene(this.currentScene, { transitionDuration: 1000 }, () => {
+        this.viewer.destroyScene(sceneToDestroy);
       });
     });
   }

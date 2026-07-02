@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Mobile } from './mobile/mobile';
+import { Desktop } from './desktop/desktop';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [Mobile, Desktop],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer {}
+export class Footer {
+  scenes = input<string[]>([]);
+}

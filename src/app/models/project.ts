@@ -22,6 +22,7 @@ export interface ProjectConfigs {
   template: ProjectTemplate;
   sceneRef: string;
   entry: string;
+  scenes: string[];
   guided: ProjectGuided;
   analytics: ProjectAnalytics;
   settings: ProjectSettings;
