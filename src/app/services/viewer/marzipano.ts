@@ -14,7 +14,6 @@ export class Marzipano {
 
   init(container: HTMLDivElement) {
     this._zone.runOutsideAngular(() => {
-      console.log(this.viewer);
       if (!this.viewer) {
         this.viewer = new _Marzipano.Viewer(container);
       }
@@ -54,7 +53,6 @@ export class Marzipano {
       if (!this.nextScene) {
         throw new Error('Next scene was not loaded.');
       }
-      console.log();
       if (view) {
         this.nextScene.view().setParameters(view);
       }
@@ -81,7 +79,6 @@ export class Marzipano {
 
   destroy() {
     this._zone.runOutsideAngular(() => {
-      console.log('marz destroy called');
       if (this.viewer) {
         const container = this.viewer.domElement();
         this.viewer.destroy();

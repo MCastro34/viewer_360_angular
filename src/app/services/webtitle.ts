@@ -7,7 +7,6 @@ export class Webtitle {
   private title = inject(Title);
 
   constructor() {
-    console.log('initialized webtitle service');
     this.title.setTitle(environment.webtitle || this.title.getTitle());
   }
 
